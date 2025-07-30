@@ -1,26 +1,252 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Import Prism.js theme for syntax highlighting */
+@import "prismjs/themes/prism-tomorrow.css";
+
+/* Additional prose styling for tables and lists */
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  border: 1px solid #d1d5db;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.prose th,
+.prose td {
+  border: 1px solid #d1d5db;
+  padding: 0.75rem;
+  text-align: left;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.prose th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  border-bottom: 2px solid #d1d5db;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.prose tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.prose ul,
+.prose ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin: 0.5rem 0;
+}
+
+.prose ul li {
+  list-style-type: disc;
+  display: list-item;
+}
+
+.prose ol li {
+  list-style-type: decimal;
+  display: list-item;
+}
+
+.prose ul ul li {
+  list-style-type: circle;
+}
+
+.prose ul ul ul li {
+  list-style-type: square;
+}
+
+/* Make sure nested lists have proper indentation */
+.prose ul ul,
+.prose ol ol,
+.prose ul ol,
+.prose ol ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+/* Blockquote styling */
+.prose blockquote {
+  border-left: 4px solid #3b82f6;
+  background-color: #f8fafc;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  position: relative;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.prose blockquote::before {
+  content: '"';
+  font-size: 4rem;
+  color: #3b82f6;
+  position: absolute;
+  top: -0.5rem;
+  left: -0.25rem;
+  font-family: Georgia, serif;
+  opacity: 0.3;
+}
+
+.prose blockquote p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Citation styling */
+.prose blockquote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.prose blockquote cite::before {
+  content: "— ";
+}
+
+/* Link styling */
+.prose a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.prose a:hover {
+  color: #1d4ed8;
+  border-bottom-color: #3b82f6;
+}
+
+.prose a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* External link styling */
+.prose a[href^="http"]:not([href*="localhost"]):not([href*="127.0.0.1"])::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  transition: color 0.2s ease-in-out;
+}
+
+.prose a[href^="http"]:not([href*="localhost"]):not([href*="127.0.0.1"]):hover::after {
+  color: #1d4ed8;
+}
+
+/* Link in headings */
+.prose h1 a,
+.prose h2 a,
+.prose h3 a,
+.prose h4 a,
+.prose h5 a,
+.prose h6 a {
+  color: inherit;
+  font-weight: inherit;
+  border-bottom: none;
+}
+
+.prose h1 a:hover,
+.prose h2 a:hover,
+.prose h3 a:hover,
+.prose h4 a:hover,
+.prose h5 a:hover,
+.prose h6 a:hover {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+/* Link in blockquotes */
+.prose blockquote a {
+  color: #1e40af;
+}
+
+.prose blockquote a:hover {
+  color: #1d4ed8;
+}
+
+/* Paragraph and heading spacing */
+.prose p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.prose h1 {
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.prose h2 {
+  margin-bottom: 0.875rem;
+  margin-top: 2rem;
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.prose h3 {
+  margin-bottom: 0.75rem;
+  margin-top: 1.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.prose h4 {
+  margin-bottom: 0.625rem;
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.prose h5 {
+  margin-bottom: 0.5rem;
+  margin-top: 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.prose h6 {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* First heading shouldn't have top margin */
+.prose h1:first-child,
+.prose h2:first-child,
+.prose h3:first-child,
+.prose h4:first-child,
+.prose h5:first-child,
+.prose h6:first-child {
+  margin-top: 0;
+}
+
+/* Reduce margin when heading follows another heading */
+.prose h1 + h2,
+.prose h2 + h3,
+.prose h3 + h4,
+.prose h4 + h5,
+.prose h5 + h6 {
+  margin-top: 1rem;
 }
