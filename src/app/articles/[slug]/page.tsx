@@ -55,7 +55,7 @@ export default async function PostPage({ params }: PageProps) {
               alt={meta.title}
               width={800}
               height={400}
-              className="w-full h-64 object-cover rounded-lg"
+              className={`w-full h-64 ${meta.coverObjectFit === 'contain' ? 'object-contain' : 'object-cover'} rounded-lg`}
             />
           </div>
         )}

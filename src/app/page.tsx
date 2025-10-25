@@ -25,7 +25,7 @@ export default function HomePage() {
                   alt={latestPost.title}
                   width={800}
                   height={450}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full ${latestPost.coverObjectFit === 'contain' ? 'object-contain' : 'object-cover'}`}
                 />
               </div>
             )}

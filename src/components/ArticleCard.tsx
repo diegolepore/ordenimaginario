@@ -27,7 +27,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
               alt={post.title}
               width={400}
               height={200}
-              className="w-full h-48 object-cover rounded-lg"
+              className={`w-full h-48 ${post.coverObjectFit === 'contain' ? 'object-contain' : 'object-cover'} rounded-lg`}
             />
           </div>
         )}

@@ -19,6 +19,8 @@ export interface PostMeta {
   date: string;
   author: string;
   coverImage?: string;
+  // Controls the CSS object-fit of cover images where used
+  coverObjectFit?: 'cover' | 'contain';
   excerpt?: string;
   description?: string;
   tags?: string[];
